@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+i{
+	cursor: pointer;
+}
+
+input, button {
+    padding: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+ul {
+    width: 50vw;
+}
+
+li {
+    background: #f8ecc7;
+    padding: 5px;
+    border: 1px black solid;
+    list-style: none;
+}
+.container-pai{
+	display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+   table {
+        width: 85vw;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f4f4f4;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+
+
+   
