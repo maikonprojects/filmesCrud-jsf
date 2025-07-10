@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+	<h:outputStylesheet library="default" name="css/bootstrap.css"></h:outputStylesheet>
+</h:head>
+<h:body styleClass="container">
+	<h:form>
+		<div class="jumbotron">
+			<h4 class="text-danger">You are not Welcome
+				#{helloBean.formBean.userName}</h4>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<h:commandButton styleClass="btn btn-primary" value="Back"
+					action="home?faces-redirect=true">
+				</h:commandButton>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

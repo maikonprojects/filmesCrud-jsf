@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+	<h:outputStylesheet library="default" name="css/bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="default" name="css/main.css"></h:outputStylesheet>
+	<h:outputStylesheet library="webjars" name="font-awesome/4.6.2/css/font-awesome-jsf.css" />
+</h:head>
+<h:body styleClass="container">
+	<div class="jumbotron">
+		<h2 class="text-primary">JSF 2.0 Hello World Example</h2>
+	</div>
+	<h:messages styleClass="text-danger" showDetail="true"
+		globalOnly="false"></h:messages>
+		
+		<h:form>
+    <h:panelGrid columns="2" cellpadding="5">
+        <h:outputLabel value="Nome do Filme:" for="nome" />
+        <h:inputText id="nome" value="#{filmeBean.novoFilme.nome}" required="true" />
+
+        <h:commandButton value="Salvar" action="#{filmeBean.inserirFilme}" />
+    </h:panelGrid>
+</h:form>
+	<h:form>
+    <div class="line-break"></div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <i class="fa fa-table" aria-hidden="true"></i>&#160;Data table
+            </h3>
+        </div>
+
+        <h:dataTable value="#{filmeBean.filmes}" var="filme" styleClass="table">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{filme.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                <h:outputText value="#{filme.nome}" />
+            </h:column>
+        </h:dataTable>
+    </div>
+</h:form>
+
+
+	
+</h:body>
+</html>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+	<h:outputStylesheet library="default" name="css/bootstrap.css"></h:outputStylesheet>
+	<h:outputStylesheet library="default" name="css/main.css"></h:outputStylesheet>
+	<h:outputStylesheet library="webjars" name="font-awesome/4.6.2/css/font-awesome-jsf.css" />
+</h:head>
+<h:body styleClass="container">
+	<div class="jumbotron">
+		<h2 class="text-primary">JSF 2.0 Hello World Example</h2>
+	</div>
+	<h:messages styleClass="text-danger" showDetail="true"
+		globalOnly="false"></h:messages>
+	<h:form>
+		<div class="form-inline row">
+			<div class="form-group col-sm-3">
+				<h:outputLabel styleClass="control-label"
+					value="#{resourceBundle['home.input.field.name']}"></h:outputLabel>
+				<h:inputText id="name" styleClass="form-control"
+					placeholder="User Name" value="#{helloBean.formBean.userName}">
+					<f:validateLength minimum="3" maximum="10"></f:validateLength>
+				</h:inputText>
+				<h:message styleClass="text-danger" for="name"></h:message>
+			</div>
+			<div class="form-group col-sm-3">
+				<h:outputLabel styleClass="control-label"
+					value="#{resourceBundle['home.input.field.password']}"></h:outputLabel>
+				<h:inputSecret id="pwd" styleClass="form-control"
+					placeholder="Password" value="#{helloBean.formBean.password}">
+					<f:validateRegex pattern="^([a-zA-Z]).{2,5}$"></f:validateRegex>
+				</h:inputSecret>
+
+			</div>
+			<div class="form-group col-sm-3">
+				<h:outputLabel styleClass="control-label"
+					value="#{resourceBundle['home.input.field.address']}"></h:outputLabel>
+				<h:inputTextarea id="address" styleClass="form-control"
+					value="#{helloBean.formBean.address}"></h:inputTextarea>
+			</div>
+			<div class="form-group col-sm-3">
+				<h:outputLabel styleClass="control-label" value="Remember me:"></h:outputLabel>
+				<h:selectBooleanCheckbox id="rememberMe"
+					styleClass="form-control checkbox"
+					value="#{helloBean.formBean.rememberMe}"></h:selectBooleanCheckbox>
+			</div>
+		</div>
+		<div class="line-break"></div>
+		<div class="row">
+			<div class="form-group col-sm-3">
+				<h:outputLabel styleClass="control-label" value="Favourite colors:"></h:outputLabel>
+				<h:selectManyCheckbox id="colors"
+					value="#{helloBean.formBean.favColors}">
+					<f:selectItems value="#{helloBean.elementSources.favColors}"
+						var="item" itemLabel="#{item.label}" itemValue="#{item.value}"></f:selectItems>
+				</h:selectManyCheckbox>
+			</div>
+		</div>
+		<div class="line-break"></div>
+		<div class="row">
+			<div class="col-sm-3">
+				<h:commandButton styleClass="btn btn-primary"
+					value="#{resourceBundle['home.button.ajax']}">
+					<f:ajax execute="name" render="output"></f:ajax>
+				</h:commandButton>
+			</div>
+			<div class="col-sm-3">
+				<h:commandButton styleClass="btn btn-primary"
+					value="#{resourceBundle['home.button.redirect']}"
+					action="welcome?faces-redirect=true">
+
+				</h:commandButton>
+			</div>
+			<div class="col-sm-3">
+				<h:commandButton styleClass="btn btn-primary"
+					value="#{resourceBundle['home.button.lucky']}"
+					action="#{helloBean.showLuckyMessage}"
+					actionListener="#{helloBean.actionListener}">
+					<f:param name="reqParam" value="Value for request param"></f:param>
+					<f:setPropertyActionListener
+						target="#{helloBean.formBean.propertyActionListner}"
+						value="Value for property action listener"></f:setPropertyActionListener>
+					<f:attribute name="reqAttr" value="Value for request attr"></f:attribute>
+				</h:commandButton>
+			</div>
+		</div>
+		<hr />
+		<h:outputText styleClass="text-primary" id="output"
+			value="#{helloBean.greetMsg}"></h:outputText>
+		<h4 class="text-primary">Internationalization example</h4>
+
+
+		<div class="form-group">
+			<h:outputLabel styleClass="control-label" value="Language:"></h:outputLabel>
+			<h:selectOneMenu styleClass="form-control"
+				value="#{language.selectedLocaleCode}"
+				valueChangeListener="#{language.changeLocale}" onchange="submit();">
+				<f:selectItems value="#{language.localeList}"></f:selectItems>
+			</h:selectOneMenu>
+			<br />
+			<h:outputText styleClass="form-control-static"
+				value="#{resourceBundle['msg.welcome']}"></h:outputText>
+		</div>
+		<div class="line-break"></div>
+		<div class="panel panel-default">
+			<div class="panel-heading"><h3 class="panel-title"><i class="fa fa-table" aria-hidden="true"></i>&#160;Data table</h3></div>
+			<h:dataTable styleClass="table table-striped"
+				value="#{helloBean.elementSources.employeeList}" var="employee">
+				<h:column>
+					<f:facet name="header">Emp no</f:facet>#{employee.empNum}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Emp name</f:facet>#{employee.empName}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Dept</f:facet>#{employee.dept}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Role</f:facet>#{employee.role}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Age</f:facet>#{employee.age}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Salary</f:facet>#{employee.sal}
+		</h:column>
+			</h:dataTable>
+		</div>
+	</h:form>
+</h:body>
+</html>
